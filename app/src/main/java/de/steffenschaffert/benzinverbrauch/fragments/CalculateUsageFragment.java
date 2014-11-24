@@ -49,40 +49,95 @@ public class CalculateUsageFragment extends Fragment implements OnClickListener 
 
 	@Override
 	public void onClick(View v) {
-		// Find GUI elements
-		TextView textViewCalculationUsage = (TextView) parent.findViewById(R.id.textViewCalculationUsage);
-		TextView textViewCalculationPrice = (TextView) parent.findViewById(R.id.textViewCalculationPrice);
-		EditText editTextCalculationDistance = (EditText) parent.findViewById(R.id.editTextCalculationDistance);
 
-		// Get values from GUI
-		double distance = 0;
-		String distanceText = editTextCalculationDistance.getText().toString();
-		try {
-			distance = Double.parseDouble(distanceText);
-		} catch (NumberFormatException e) {
-			// Print error message and return
-			Toast.makeText(parent, parent.getString(R.string.calculateUsage_errorDistanceEmpty), Toast.LENGTH_SHORT).show();
-			return;
-		}
+        switch (v.getId()){
+            case R.id.buttonCalculateUsage:
+                calculateUsage();
+                break;
 
-		// Access DB
-		DBAccess dbAccess = new DBAccess(parent, BenzinVerbrauchConfig.DB_FILENAME);
-		double usage = dbAccess.getUsagePer100KmComplete();
-		double price = dbAccess.getLastPrice();
-		dbAccess.close();
+            case R.id.buttonCalculateDistance:
+                Toast.makeText(parent, "Test: Button wurde gedrückt.", Toast.LENGTH_SHORT).show();
+                calculateDistance();
+                break;
+        }
 
-		// Check if entries available
-		if (usage != 0) {
-			// Calculate
-			double calculatedUsageForDistance = usage * distance / 100.0;
-			double calculatedPriceForDistance = price / 100.0 * calculatedUsageForDistance;
 
-			// Show calculations
-			textViewCalculationUsage.setText(String.format(parent.getString(R.string.calculateUsage_calculatedUsage), calculatedUsageForDistance));
-			textViewCalculationPrice.setText(String.format(parent.getString(R.string.calculateUsage_calculatedPrice), calculatedPriceForDistance));
-		} else {
-			// print message
-			Toast.makeText(parent, parent.getString(R.string.calculateUsage_errorNoEntry), Toast.LENGTH_LONG).show();
-		}
 	}
+
+    private void calculateUsage(){
+        // Find GUI elements
+        TextView textViewCalculationUsage = (TextView) parent.findViewById(R.id.textViewCalculationUsage);
+        TextView textViewCalculationPrice = (TextView) parent.findViewById(R.id.textViewCalculationPrice);
+        EditText editTextCalculationDistance = (EditText) parent.findViewById(R.id.editTextCalculationDistance);
+
+        // Get values from GUI
+        double distance = 0;
+        String distanceText = editTextCalculationDistance.getText().toString();
+        try {
+            distance = Double.parseDouble(distanceText);
+        } catch (NumberFormatException e) {
+            // Print error message and return
+            Toast.makeText(parent, parent.getString(R.string.calculateUsage_errorDistanceEmpty), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Access DB
+        DBAccess dbAccess = new DBAccess(parent, BenzinVerbrauchConfig.DB_FILENAME);
+        double usage = dbAccess.getUsagePer100KmComplete();
+        double price = dbAccess.getLastPrice();
+        dbAccess.close();
+
+        // Check if entries available
+        if (usage != 0) {
+            // Calculate
+            double calculatedUsageForDistance = usage * distance / 100.0;
+            double calculatedPriceForDistance = price / 100.0 * calculatedUsageForDistance;
+
+            // Show calculations
+            textViewCalculationUsage.setText(String.format(parent.getString(R.string.calculateUsage_calculatedUsage), calculatedUsageForDistance));
+            textViewCalculationPrice.setText(String.format(parent.getString(R.string.calculateUsage_calculatedPrice), calculatedPriceForDistance));
+        } else {
+            // print message
+            Toast.makeText(parent, parent.getString(R.string.calculateUsage_errorNoEntry), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void calculateDistance(){
+        // TODO Alex Kuhn: Hier weiter dran arbeiten
+
+        // Find GUI elements
+        TextView textViewCalculationDistance = (TextView) parent.findViewById(R.id.textViewCalculationDistanceResult);
+        EditText editTextCalculationFuelAmount = (EditText) parent.findViewById(R.id.editTextFuelAmountContent);
+
+        // Get values from GUI
+        double fuelAmount = 0;
+        String fuelAmountText = editTextCalculationFuelAmount.getText().toString();
+        try {
+            fuelAmount = Double.parseDouble(fuelAmountText);
+        } catch (NumberFormatException e) {
+            // Print error message and return
+            Toast.makeText(parent, parent.getString(R.string.calculateUsage_errorFuelAmountEmpty), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Access DB
+        DBAccess dbAccess = new DBAccess(parent, BenzinVerbrauchConfig.DB_FILENAME);
+
+        double usagePer100Km = dbAccess.getUsagePer100KmComplete();
+        //double price = dbAccess.getLastPrice();
+        dbAccess.close();
+
+        // Check if entries available
+        if (usagePer100Km != 0) {
+            // Calculate
+
+            double calculatedDistanceForFuelAmount =  fuelAmount / (usagePer100Km / 100);
+
+            // Show calculations
+            textViewCalculationDistance.setText(String.format(parent.getString(R.string.calculateDistance_calculatedDistance), calculatedDistanceForFuelAmount));
+        } else {
+            // print message
+            Toast.makeText(parent, parent.getString(R.string.calculateUsage_errorNoFuelAmountEntry), Toast.LENGTH_LONG).show();
+        }
+    }
 }

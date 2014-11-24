@@ -36,6 +36,12 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayoutCalculationUsageBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normalMargin" >
+
     <TextView
         android:id="@+id/textViewCalculationUsage"
         android:layout_width="wrap_content"
@@ -49,5 +55,53 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/normalMargin"
         android:text="" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normalMargin" >
+
+        <TextView
+            android:id="@+id/textViewFuelAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calculateDistance_fuelAmount" />
+
+        <EditText
+            android:id="@+id/editTextFuelAmountContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberDecimal" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/buttonCalculateDistance"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calculate_buttonCalculate" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCalculationDistanceResultBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normalMargin" >
+
+        <TextView
+            android:id="@+id/textViewCalculationDistanceResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normalMargin"
+            android:text="@string/calculateDistance_calculatedDistance" />
+
+    </LinearLayout>
 
 </LinearLayout>

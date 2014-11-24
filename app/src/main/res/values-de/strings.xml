@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
+    <!-- general settings / names -->
     <string name="app_name">BenzinVerbrauch</string>
     
     <string name="general_save">Speichern</string>
@@ -30,11 +31,15 @@
     <string name="addEntry_errorEmptyFields">Bitte füllen Sie alle Felder aus.</string>
     <string name="addEntry_errorDateFormat">Das Datum muss die in den Einstellungen gewählte Form haben.</string>
     <string name="addEntry_errorCalculatedDistanceNegative">Gefahrene Strecke wird negativ, überprüfen Sie den eingegebenen Kilometerstand.</string>
-    
+
+    <!-- calculate settings / names -->
+    <string name="calculate_buttonCalculate">Berechnen</string>
+
+    <!-- calculateUsage settings / names -->
     <string name="calculateUsage_tab">Berechnen</string>
     <string name="calculateUsage_distance">Strecke (km):</string>
     <string name="calculateUsage_buttonCalculate">Berechnen</string>
-    <string name="calculateUsage_errorDistanceEmpty">Bitte geben Sie eine Strecke ein.</string>
+    <string name="calculateUsage_errorDistanceEmpty">Bitte geben Sie einen Verbrauch in Liter ein.</string>
     <string name="calculateUsage_errorNoEntry">Damit der Verbrauch geschätzt werden kann, müssen Sie zuerst einen Eintrag anlegen.</string>
     <string name="calculateUsage_calculatedUsage">Geschätzter Verbrauch: %.2f l</string>
     <string name="calculateUsage_calculatedPrice">Geschätzter Preis: %.2f €</string>

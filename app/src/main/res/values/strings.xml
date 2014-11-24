@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- general settings / names -->
     <string name="app_name">FuelConsumption</string>
     
     <string name="general_save">Save</string>
@@ -33,14 +34,24 @@
     <string name="addEntry_errorDateFormat">The date has an incorrect format.</string>
     <string name="addEntry_errorCalculatedDistanceNegative">Distance driven gets negative, please check the mileage.</string>
 
-    
+    <!-- calculate settings / names -->
+    <string name="calculate_buttonCalculate">Calculate</string>
+
+    <!-- calculateUsage settings / names -->
     <string name="calculateUsage_tab">Calculate</string>
     <string name="calculateUsage_distance">Distance (km):</string>
     <string name="calculateUsage_buttonCalculate">Calculate</string>
-    <string name="calculateUsage_errorDistanceEmpty">Please fill in a distance.</string>
+    <string name="calculateUsage_errorDistanceEmpty">Please fill in a usage.</string>
     <string name="calculateUsage_errorNoEntry">You need to make an entry in order to estimate your consumption.</string>
     <string name="calculateUsage_calculatedUsage">Estimated consumption: %.2f l</string>
     <string name="calculateUsage_calculatedPrice">Estimated price: %.2f €</string>
+
+    <!-- calculateFuelAmount settings / names -->
+    <string name="calculateDistance_fuelAmount">Fuel amount (l):</string>
+    <string name="calculateUsage_errorFuelAmountEmpty">Please fill in a fuel amount.</string>
+    <string name="calculateUsage_errorNoFuelAmountEntry">You need to make an entry in order to estimate your distance.</string>
+    <string name="calculateDistance_calculatedDistance">Estimated distance: %.2f km/h</string>
+
     
     <string name="manageCars_buttonSave">@string/general_save</string>
     <string name="manageCars_buttonCancel">@string/general_cancel</string>
