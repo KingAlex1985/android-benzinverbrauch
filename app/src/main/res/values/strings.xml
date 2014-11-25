@@ -41,7 +41,7 @@
     <string name="calculateUsage_tab">Calculate</string>
     <string name="calculateUsage_distance">Distance (km):</string>
     <string name="calculateUsage_buttonCalculate">Calculate</string>
-    <string name="calculateUsage_errorDistanceEmpty">Please fill in a usage.</string>
+    <string name="calculateUsage_errorDistanceEmpty">Please fill in a distance.</string>
     <string name="calculateUsage_errorNoEntry">You need to make an entry in order to estimate your consumption.</string>
     <string name="calculateUsage_calculatedUsage">Estimated consumption: %.2f l</string>
     <string name="calculateUsage_calculatedPrice">Estimated price: %.2f €</string>
@@ -50,9 +50,14 @@
     <string name="calculateDistance_fuelAmount">Fuel amount (l):</string>
     <string name="calculateUsage_errorFuelAmountEmpty">Please fill in a fuel amount.</string>
     <string name="calculateUsage_errorNoFuelAmountEntry">You need to make an entry in order to estimate your distance.</string>
-    <string name="calculateDistance_calculatedDistance">Estimated distance: %.2f km/h</string>
+    <string name="calculateDistance_calculatedDistance">Estimated distance: %.2f km</string>
 
-    
+    <!-- calculateDistanceByMoneyAmount settings / names -->
+    <string name="calculateDistanceByMoneyAmount_MoneyAmount">Money amount (€):</string>
+    <string name="calculateDistanceByMoneyAmount_calculatedDistance">Estimated distance: %.2f km</string>
+    <string name="calculateUsage_errorMoneyAmountEmpty">Please fill in a money amount.</string>
+
+
     <string name="manageCars_buttonSave">@string/general_save</string>
     <string name="manageCars_buttonCancel">@string/general_cancel</string>
     <string name="manageCars_buttonDelete">@string/general_delete</string>

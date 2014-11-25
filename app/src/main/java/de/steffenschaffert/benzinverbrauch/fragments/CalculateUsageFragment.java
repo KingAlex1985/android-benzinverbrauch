@@ -45,6 +45,12 @@ public class CalculateUsageFragment extends Fragment implements OnClickListener 
 		// Click listener
 		Button buttonCalculateUsage = (Button) parent.findViewById(R.id.buttonCalculateUsage);
 		buttonCalculateUsage.setOnClickListener(this);
+
+        Button buttonCalculateDistance = (Button) parent.findViewById(R.id.buttonCalculateDistance);
+        buttonCalculateDistance.setOnClickListener(this);
+
+        Button buttonCalculateDistanceByMoneyAmount = (Button) parent.findViewById(R.id.buttonCalculateDistanceByMoneyAmount);
+        buttonCalculateDistanceByMoneyAmount.setOnClickListener(this);
 	}
 
 	@Override
@@ -56,14 +62,24 @@ public class CalculateUsageFragment extends Fragment implements OnClickListener 
                 break;
 
             case R.id.buttonCalculateDistance:
-                Toast.makeText(parent, "Test: Button wurde gedrückt.", Toast.LENGTH_SHORT).show();
                 calculateDistance();
+                break;
+
+            case R.id.buttonCalculateDistanceByMoneyAmount:
+                calculateDistanceForMoneyAmount();
                 break;
         }
 
 
 	}
 
+    /**
+     * ---------------------------------------------------------------------------------------------
+     *
+     * calculate the usage
+     *
+     * ---------------------------------------------------------------------------------------------
+     */
     private void calculateUsage(){
         // Find GUI elements
         TextView textViewCalculationUsage = (TextView) parent.findViewById(R.id.textViewCalculationUsage);
@@ -102,9 +118,14 @@ public class CalculateUsageFragment extends Fragment implements OnClickListener 
         }
     }
 
+    /**
+     * ---------------------------------------------------------------------------------------------
+     *
+     * calculate the distance by given fuel amount
+     *
+     * ---------------------------------------------------------------------------------------------
+     */
     private void calculateDistance(){
-        // TODO Alex Kuhn: Hier weiter dran arbeiten
-
         // Find GUI elements
         TextView textViewCalculationDistance = (TextView) parent.findViewById(R.id.textViewCalculationDistanceResult);
         EditText editTextCalculationFuelAmount = (EditText) parent.findViewById(R.id.editTextFuelAmountContent);
@@ -135,6 +156,55 @@ public class CalculateUsageFragment extends Fragment implements OnClickListener 
 
             // Show calculations
             textViewCalculationDistance.setText(String.format(parent.getString(R.string.calculateDistance_calculatedDistance), calculatedDistanceForFuelAmount));
+        } else {
+            // print message
+            Toast.makeText(parent, parent.getString(R.string.calculateUsage_errorNoFuelAmountEntry), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * ---------------------------------------------------------------------------------------------
+     *
+     * calculate the distance by given money amount
+     *
+     * ---------------------------------------------------------------------------------------------
+     */
+    private void calculateDistanceForMoneyAmount(){
+        // Find GUI elements
+        TextView textViewCalculationDistanceByMoneyAmount = (TextView) parent.findViewById(R.id.textViewCalculationDistanceResultByMoneyAmount);
+        EditText editTextCalculationMoneyAmount = (EditText) parent.findViewById(R.id.editTextMoneyAmountContent);
+
+        // Get values from GUI
+        double moneyAmount = 0;
+        String moneyAmountText = editTextCalculationMoneyAmount.getText().toString();
+        try {
+            moneyAmount = Double.parseDouble(moneyAmountText);
+        } catch (NumberFormatException e) {
+            // Print error message and return
+            Toast.makeText(parent, parent.getString(R.string.calculateUsage_errorMoneyAmountEmpty), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Access DB
+        DBAccess dbAccess = new DBAccess(parent, BenzinVerbrauchConfig.DB_FILENAME);
+        double usagePer100Km = dbAccess.getUsagePer100KmComplete();
+        double priceInCent = dbAccess.getLastPrice();
+        dbAccess.close();
+
+        // Check if entries available
+        if (usagePer100Km != 0) {
+            // Calculate
+
+            Toast.makeText(parent, "Price = "+priceInCent, Toast.LENGTH_LONG).show();
+
+            double priceInEuro = priceInCent / 100;
+
+            double usagePer1Km = usagePer100Km / 100;
+            double fuelConsumption = moneyAmount / priceInEuro;
+            double calculatedDistanceForMoneyAmount = fuelConsumption / usagePer1Km;
+
+            // Show calculations
+            textViewCalculationDistanceByMoneyAmount.setText(String.format(parent.getString(R.string.calculateDistanceByMoneyAmount_calculatedDistance), calculatedDistanceForMoneyAmount));
         } else {
             // print message
             Toast.makeText(parent, parent.getString(R.string.calculateUsage_errorNoFuelAmountEntry), Toast.LENGTH_LONG).show();

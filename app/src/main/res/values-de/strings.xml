@@ -39,10 +39,21 @@
     <string name="calculateUsage_tab">Berechnen</string>
     <string name="calculateUsage_distance">Strecke (km):</string>
     <string name="calculateUsage_buttonCalculate">Berechnen</string>
-    <string name="calculateUsage_errorDistanceEmpty">Bitte geben Sie einen Verbrauch in Liter ein.</string>
+    <string name="calculateUsage_errorDistanceEmpty">Bitte geben Sie eine Strecke ein.</string>
     <string name="calculateUsage_errorNoEntry">Damit der Verbrauch geschätzt werden kann, müssen Sie zuerst einen Eintrag anlegen.</string>
     <string name="calculateUsage_calculatedUsage">Geschätzter Verbrauch: %.2f l</string>
     <string name="calculateUsage_calculatedPrice">Geschätzter Preis: %.2f €</string>
+
+    <!-- calculateFuelAmount settings / names -->
+    <string name="calculateDistance_fuelAmount">Benzinmenge (l):</string>
+    <string name="calculateUsage_errorFuelAmountEmpty">Bitte geben Sie einen Verbrauch in Liter ein.</string>
+    <string name="calculateUsage_errorNoFuelAmountEntry">Damit die Distanz geschätzt werden kann, müssen Sie zuerst einen Eintrag anlegen.</string>
+    <string name="calculateDistance_calculatedDistance">Geschätzte Distanz: %.2f km</string>
+
+    <!-- calculateDistanceByMoneyAmount settings / names -->
+    <string name="calculateDistanceByMoneyAmount_MoneyAmount">Geldbetrag (€):</string>
+    <string name="calculateDistanceByMoneyAmount_calculatedDistance">Geschätzte Distanz: %.2f km</string>
+    <string name="calculateUsage_errorMoneyAmountEmpty">Please fill in a money amount.</string>
     
     <string name="manageCars_chooseCar">Auto auswählen (lange drücken für weitere Optionen):</string>
     <string name="manageCars_addCar">Auto hinzufügen:</string>

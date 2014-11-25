@@ -59,35 +59,35 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/normalMargin" >
+
+    <TextView
+        android:id="@+id/textViewFuelAmountLabel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/normalMargin" >
+        android:text="@string/calculateDistance_fuelAmount" />
 
-        <TextView
-            android:id="@+id/textViewFuelAmountLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/calculateDistance_fuelAmount" />
+    <EditText
+        android:id="@+id/editTextFuelAmountContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="numberDecimal" >
 
-        <EditText
-            android:id="@+id/editTextFuelAmountContent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="numberDecimal" >
+        <requestFocus />
+    </EditText>
 
-            <requestFocus />
-        </EditText>
+    <Button
+        android:id="@+id/buttonCalculateDistance"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calculate_buttonCalculate" />
 
-        <Button
-            android:id="@+id/buttonCalculateDistance"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/calculate_buttonCalculate" />
-
-    </LinearLayout>
+</LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayoutCalculationDistanceResultBox"
@@ -100,7 +100,53 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normalMargin"
-            android:text="@string/calculateDistance_calculatedDistance" />
+            android:text="" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normalMargin" >
+
+        <TextView
+            android:id="@+id/textViewMoneyAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calculateDistanceByMoneyAmount_MoneyAmount" />
+
+        <EditText
+            android:id="@+id/editTextMoneyAmountContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberDecimal" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/buttonCalculateDistanceByMoneyAmount"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calculate_buttonCalculate" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCalculationDistanceResulByMoneyAmounttBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normalMargin" >
+
+        <TextView
+            android:id="@+id/textViewCalculationDistanceResultByMoneyAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normalMargin"
+            android:text="" />
 
     </LinearLayout>
 
