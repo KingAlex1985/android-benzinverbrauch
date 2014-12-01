@@ -129,6 +129,7 @@ public class CalculateUsageFragment extends Fragment implements OnClickListener 
         // Find GUI elements
         TextView textViewCalculationDistance = (TextView) parent.findViewById(R.id.textViewCalculationDistanceResult);
         EditText editTextCalculationFuelAmount = (EditText) parent.findViewById(R.id.editTextFuelAmountContent);
+        TextView textViewCalculationPriceResultByFuelAmount = (TextView) parent.findViewById(R.id.textViewCalculationPriceResultByFuelAmount);
 
         // Get values from GUI
         double fuelAmount = 0;
@@ -145,7 +146,7 @@ public class CalculateUsageFragment extends Fragment implements OnClickListener 
         DBAccess dbAccess = new DBAccess(parent, BenzinVerbrauchConfig.DB_FILENAME);
 
         double usagePer100Km = dbAccess.getUsagePer100KmComplete();
-        //double price = dbAccess.getLastPrice();
+        double pricePerLiterInCent = dbAccess.getLastPrice();
         dbAccess.close();
 
         // Check if entries available
@@ -154,8 +155,11 @@ public class CalculateUsageFragment extends Fragment implements OnClickListener 
 
             double calculatedDistanceForFuelAmount =  fuelAmount / (usagePer100Km / 100);
 
+            double calculatedPriceForForFuelAmount = fuelAmount * pricePerLiterInCent / 100;
+
             // Show calculations
             textViewCalculationDistance.setText(String.format(parent.getString(R.string.calculateDistance_calculatedDistance), calculatedDistanceForFuelAmount));
+            textViewCalculationPriceResultByFuelAmount.setText(String.format(parent.getString(R.string.calculateUsage_calculatedPrice), calculatedPriceForForFuelAmount));
         } else {
             // print message
             Toast.makeText(parent, parent.getString(R.string.calculateUsage_errorNoFuelAmountEntry), Toast.LENGTH_LONG).show();
@@ -174,6 +178,7 @@ public class CalculateUsageFragment extends Fragment implements OnClickListener 
         TextView textViewCalculationDistanceByMoneyAmount = (TextView) parent.findViewById(R.id.textViewCalculationDistanceResultByMoneyAmount);
         EditText editTextCalculationMoneyAmount = (EditText) parent.findViewById(R.id.editTextMoneyAmountContent);
 
+
         // Get values from GUI
         double moneyAmount = 0;
         String moneyAmountText = editTextCalculationMoneyAmount.getText().toString();
@@ -189,14 +194,12 @@ public class CalculateUsageFragment extends Fragment implements OnClickListener 
         DBAccess dbAccess = new DBAccess(parent, BenzinVerbrauchConfig.DB_FILENAME);
         double usagePer100Km = dbAccess.getUsagePer100KmComplete();
         double priceInCent = dbAccess.getLastPrice();
+
         dbAccess.close();
 
         // Check if entries available
         if (usagePer100Km != 0) {
             // Calculate
-
-            Toast.makeText(parent, "Price = "+priceInCent, Toast.LENGTH_LONG).show();
-
             double priceInEuro = priceInCent / 100;
 
             double usagePer1Km = usagePer100Km / 100;
